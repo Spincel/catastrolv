@@ -26,6 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('admin');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('admin');
 
 
     // 3. Rutas de Números Oficiales
@@ -57,6 +58,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/configuracion', [SettingController::class, 'edit'])->name('settings.edit');
     Route::post('/configuracion', [SettingController::class, 'update'])->name('settings.update');
+
+    // 4. Rutas de Reportes
+    Route::get('/reportes', [\App\Http\Controllers\ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reportes/exportar', [\App\Http\Controllers\ReportController::class, 'export'])->name('reports.export');
 
 });
 
