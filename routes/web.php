@@ -1,13 +1,12 @@
-<?php  // <--- ESTA LÍNEA ES LA QUE TE FALTA
+<?php
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingController; 
 use App\Http\Controllers\OfficialNumberController;
-use App\Http\Controllers\ProfileController; // Agrega este también para evitar el siguiente error
+use App\Http\Controllers\ProfileController; 
+use App\Http\Controllers\WelcomeController; // Import WelcomeController
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']); // Use WelcomeController@index for the root route
 
 Route::get('/dashboard', function () {
     return view('dashboard');

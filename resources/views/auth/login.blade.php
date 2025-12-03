@@ -12,15 +12,17 @@
 </head>
 <body class="h-full">
 
+@php
+    use App\Models\Setting;
+    $appLogo = Setting::get('institution_logo', 'img/logo.png'); // Fallback to default image
+@endphp
 <div class="flex min-h-full">
     
     <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24 z-10 bg-white relative">
         <div class="mx-auto w-full max-w-sm lg:w-96">
             
             <div>
-                <div class="h-12 w-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                </div>
+                <img class="mx-auto h-24 w-auto" src="{{ asset('storage/' . $appLogo) }}" alt="Logo de la Aplicación">
                 <h2 class="mt-6 text-3xl font-black tracking-tight text-gray-900">Bienvenido de nuevo</h2>
                 <p class="mt-2 text-sm text-gray-600">
                     Sistema de Gestión Catastral y Ordenamiento

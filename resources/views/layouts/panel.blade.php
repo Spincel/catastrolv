@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @php
+        use App\Models\Setting;
+        $appLogo = Setting::get('institution_logo', 'img/logo.png'); // Fallback to default image
+    @endphp
+    <link rel="icon" href="{{ asset('storage/' . $appLogo) }}" type="image/x-icon">
     <title>Catastro Municipal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -63,6 +68,16 @@
                 </div>
             </div>
         </nav>
+        {{-- Logo at the bottom of the sidebar --}}
+        <div class="p-4 flex justify-center border-t border-gray-800 mt-auto">
+            @if ($appLogo)
+                <img src="{{ asset('storage/' . $appLogo) }}" alt="Logo de la Aplicación" class="h-16 w-auto opacity-75">
+            @else
+                <svg class="h-12 w-12 text-gray-500 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+            @endif
+        </div>
     </aside>
 
     <main class="flex-1 overflow-y-auto bg-gray-100 relative flex flex-col">

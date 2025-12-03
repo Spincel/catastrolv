@@ -6,6 +6,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        @php
+            use App\Models\Setting;
+            $appLogo = Setting::get('institution_logo', 'img/logo.png'); // Fallback to default image
+        @endphp
+        <link rel="icon" href="{{ asset('storage/' . $appLogo) }}" type="image/x-icon">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
